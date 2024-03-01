@@ -54,9 +54,12 @@ func (h ecrHelper) GetECRCredentials(registryURL string, username string, passwo
 		return "", "", err
 	}
 
-	awsSession := awssession.New(&aws.Config{
+	awsSession, err := awssession.NewSession(&aws.Config{
 		Credentials: credentials.NewStaticCredentials(username, password, ""),
 	})
+	if err != nil {
+		return "", "", err
+	}
 
 	awsConfig := &aws.Config{Region: aws.String(registry.Region)}
 	if registry.FIPS {
