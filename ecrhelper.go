@@ -76,9 +76,6 @@ func (h ecrHelper) GetECRCredentials(registryURL string, username string, passwo
 	ecrClient := ecr.New(awsSession, awsConfig)
 
 	input := &ecr.GetAuthorizationTokenInput{}
-	if registry.ID != "" {
-		input.RegistryIds = []*string{aws.String(registry.ID)}
-	}
 	output, err := ecrClient.GetAuthorizationToken(input)
 	if err != nil {
 		return "", "", err
