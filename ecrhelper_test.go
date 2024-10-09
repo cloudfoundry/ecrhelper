@@ -26,6 +26,14 @@ var _ = Describe("Ecrhelper", func() {
 			})
 		})
 
+		Context("when FIPS ECR repo URL is passed in", func() {
+			It("returns true", func() {
+				isECRREpo, err := ecrHelper.IsECRRepo("555555555.dkr.ecr-fips.us-east-1.amazonaws.com/diego-docker-app")
+				Expect(err).NotTo(HaveOccurred())
+				Expect(isECRREpo).To(BeTrue())
+			})
+		})
+
 		Context("when not ECR repo URL is passed in", func() {
 			It("returns false", func() {
 				isECRRepo, err := ecrHelper.IsECRRepo("docker.io/cloudfoundry/diego-docker-app")
