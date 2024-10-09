@@ -15,7 +15,7 @@ import (
 	ecrapi "github.com/awslabs/amazon-ecr-credential-helper/ecr-login/api"
 )
 
-const ECR_REPO_REGEX = `[a-zA-Z0-9][a-zA-Z0-9_-]*\.dkr\.ecr\.[a-zA-Z0-9][a-zA-Z0-9_-]*\.amazonaws\.com(\.cn)?[^ ]*`
+const ECR_REPO_REGEX = `[a-zA-Z0-9][a-zA-Z0-9_-]*\.dkr\.ecr(-fips)?\.[a-zA-Z0-9][a-zA-Z0-9_-]*\.amazonaws\.com(\.cn)?[^ ]*`
 
 //go:generate counterfeiter -o fakes/fake_ecrhelper.go . ECRHelper
 type ECRHelper interface {
